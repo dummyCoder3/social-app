@@ -1,8 +1,15 @@
+import CreatePost from "@/components/CreatePost";
+import { currentUser } from "@clerk/nextjs/server";
 
-export default function Home() {
+export default async function Home() {
+  const user = await currentUser();
+
   return (
-    <div className="min-h-screen p-4">
-      <h1>Home page content</h1>
+    <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
+      <div className="lg:col-span-6">{user ? <CreatePost /> : null}</div>
+      <div className="hidden sticky top-20 lg:block lg:col-span-4">
+        WhoToFollow??
+      </div>
     </div>
   );
 }
