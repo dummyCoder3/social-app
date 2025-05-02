@@ -1,9 +1,13 @@
-import Link from "next/link";
+"use client"; // IMPORTANT: Needed to use hooks (useRouter) in this file
+
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { HomeIcon, ArrowLeftIcon } from "lucide-react";
 
 export default function NotFound() {
+  const router = useRouter(); // Enables client-side navigation; used here to navigate one step back in browser history, that's why this page is client
+
   return (
     <div className="min-h-[80vh] grid place-items-center px-4">
       <Card className="w-full max-w-md">
@@ -14,24 +18,24 @@ export default function NotFound() {
 
             {/* MESSAGE */}
             <div className="space-y-2">
-              <h1 className="text-2xl font-bold tracking-tight">User not found</h1>
-              <p className="text-muted-foreground">The user you&apos;re looking for doesn&apos;t exist.</p>
+              <h1 className="text-2xl font-bold tracking-tight">
+                User not found
+              </h1>
+              <p className="text-muted-foreground">
+                The user you&apos;re looking for doesn&apos;t exist.
+              </p>
             </div>
 
             {/* ACTION BUTTONS */}
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Button variant="default" asChild>
-                <Link href="/">
-                  <HomeIcon className="mr-2 size-4" />
-                  Back to Home
-                </Link>
+              <Button variant="default">
+                <HomeIcon className="mr-2 size-4" />
+                <a href="/">Back to Home</a>
               </Button>
 
-              <Button variant="outline" asChild>
-                <Link href="/">
-                  <ArrowLeftIcon className="mr-2 size-4" />
-                  Home
-                </Link>
+              <Button variant="outline" onClick={() => router.back()}>
+                <ArrowLeftIcon className="mr-2 size-4" />
+                Back
               </Button>
             </div>
           </div>
