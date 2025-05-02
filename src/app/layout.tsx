@@ -21,7 +21,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "LinkUp",
-  description: "A modern social app powered Next.js and NeonDB",
+  description: "A modern social app powered by Next.js and NeonDB",
 };
 
 export default function RootLayout({
